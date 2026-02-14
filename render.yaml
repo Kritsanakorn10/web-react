@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: my-react-app
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true

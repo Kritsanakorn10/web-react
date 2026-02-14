@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@100..900&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  font-family: "Sarabun", "Noto Sans Thai Looped", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.nav-shell {
+  position: relative;
+  overflow: hidden;
+  animation: navFloat 8s ease-in-out infinite;
+}
+
+.nav-shell::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 20% 20%, rgba(56, 189, 248, 0.18), transparent 55%);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.nav-sheen::after {
+  content: "";
+  position: absolute;
+  inset: -50% 0;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: translateX(-40%);
+  animation: navSheen 10s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.nav-chip {
+  position: relative;
+  overflow: hidden;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.nav-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 20%, rgba(56, 189, 248, 0.25), transparent 60%);
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.nav-chip:hover::after {
+  opacity: 1;
+}
+
+.nav-chip:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.18);
+}
+
+@keyframes navFloat {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes navSheen {
+  0% {
+    transform: translateX(-40%);
+  }
+  60% {
+    transform: translateX(40%);
+  }
+  100% {
+    transform: translateX(40%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-shell {
+    animation: none;
+  }
+  .nav-sheen::after {
+    animation: none;
+  }
+}
+
+.about-zoom {
+  position: relative;
+  z-index: 5;
+  transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1),
+    box-shadow 600ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.about-zoom-active {
+  transform: scale(1.06);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-zoom,
+  .about-zoom-active {
+    transition: none;
+    transform: none;
+  }
+}
+
+.nav-track {
+  position: relative;
+  --mx: 50%;
+  --my: 50%;
+}
+
+.nav-animate {
+  animation: navPulse 4.5s ease-in-out infinite;
+}
+
+.nav-pill {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-pill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 20% 20%,
+    rgba(56, 189, 248, 0.35),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 250ms ease;
+}
+
+.nav-pill:hover::after {
+  opacity: 1;
+}
+
+.nav-track::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    rgba(56, 189, 248, 0.25),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity 220ms ease;
+  pointer-events: none;
+}
+
+.nav-track:hover::before {
+  opacity: 1;
+}
+
+@keyframes navPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 18px rgba(34, 211, 238, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 36px rgba(56, 189, 248, 0.45);
+  }
+}
